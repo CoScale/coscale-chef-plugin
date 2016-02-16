@@ -71,7 +71,7 @@ class Chef
     def self._eventdatapush(message, timestamp, token, url)
       data = {'message' => message,
               'timestamp' => timestamp,
-              'subject' => 'subject',
+              'subject' => 'a',
               }
       headers = {'HTTPAuthorization' => token}
 
