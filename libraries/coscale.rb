@@ -5,13 +5,13 @@ require 'uri'
 require 'json'
 
 
-# The module is used for creating and sending 
+# The module is used for creating and sending
 # events to CoScale API during client updates.
 
 class Chef
   module Coscale
 
-    # Authentication using the Access token to get a 
+    # Authentication using the Access token to get a
     # HTTPAuthentication token from the CoScale API.
     #
     # @param accesstoken [string] The accessToken is used to login to the API
@@ -38,7 +38,8 @@ class Chef
       data = {'name'        => name,
               'description' => '',
               'type'        => '',
-              'source'      => 'Chef'}
+              'source'      => 'Chef',
+              'icon'        => 'chef'}
       headers = {'HTTPAuthorization' => token}
 
       uri = URI.parse(url)
@@ -46,11 +47,11 @@ class Chef
       if url.start_with?('https')
         http.use_ssl = true
       end
-      
+
       request = Net::HTTP::Post.new(uri.request_uri, initheader = headers)
       request.set_form_data(data)
       res = http.request(request)
-      
+
       # if the response has status code 409(duplicate event)
       # the CoScale API sends the id of the event in the response;
       # the id can be taken from the response and used to send event data
@@ -122,7 +123,7 @@ class Chef
           if err.code == '401'
             token = _login(accesstoken, baseurl + 'login/')
             err = _eventdatapush(event_message, timestamp, token, url=url)
-          end 
+          end
           if err.code != '200'
             reply['comment'] = err.body
             return reply
