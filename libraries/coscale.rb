@@ -35,10 +35,13 @@ class Chef
     # @param url [string] We create a POST request to this url to create an event
     # @return [string] Request if there was an error or the event id if the request succeed
     def self._eventpush(name, token, url)
-      data = {'name'        => name,
-              'description' => '',
-              'type'        => '',
-              'source'      => 'Chef'}
+      data = {
+        'name'        => name,
+        'description' => '',
+        'type'        => '',
+        'source'      => 'Chef',
+        'icon'        => 'chef'
+      }
       headers = {'HTTPAuthorization' => token}
 
       uri = URI.parse(url)
