@@ -39,7 +39,7 @@ class Chef
         'name'        => name,
         'description' => '',
         'type'        => '',
-        'source'      => 'Chef',
+        'source'      => 'CHEF',
         'icon'        => 'chef'
       }
       headers = {'HTTPAuthorization' => token}
